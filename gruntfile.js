@@ -63,6 +63,16 @@ module.exports = function(grunt) {
                 src: ['C:/proj/common-static-content/src/main/webapp/js/vendor/angular-1.1.5/**/*.js', 'C:/proj/common-static-content/src/main/webapp/js/theaa/theaa.js'],
                 dest: 'public/js/common-all.js'
             }
+        },
+        env: {
+            test: {
+                NODE_ENV: 'test'
+            }
+        },
+        karma: {
+            unit: {
+                configFile: 'test/karma/karma.conf.js'
+            }
         }
     });
 
@@ -71,6 +81,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('env');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
@@ -80,4 +92,6 @@ module.exports = function(grunt) {
     grunt.registerTask('build-all', ['concat:commonJS', 'concat:appJS', 'sass:app', 'sass:common']);
     grunt.registerTask('build-common', ['sass:common', 'concat:common']);
     grunt.registerTask('build-app', ['sass:app', 'concat:app']);
+    //Test task.
+    grunt.registerTask('test', ['env:test', 'karma:unit']);
 };
