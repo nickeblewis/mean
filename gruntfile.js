@@ -1,26 +1,25 @@
+'use strict';
+
 module.exports = function(grunt) {
+
     // Project Configuration
+    require('time-grunt')(grunt);
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
-            jade: {
-                files: ['app/views/**'],
-                options: {
-                    livereload: true,
-                },
-            },
             js: {
-                files: ['public/js/**', 'app/**/*.js'],
+                files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
                 tasks: ['jshint'],
                 options: {
-                    livereload: true,
-                },
+                    livereload: true
+                }
             },
             html: {
-                files: ['public/views/**'],
+                files: ['public/views/**', 'app/views/**'],
                 options: {
-                    livereload: true,
-                },
+                    livereload: true
+                }
             },
             css: {
                 files: ['public/css/**'],
@@ -29,65 +28,56 @@ module.exports = function(grunt) {
                 }
             }
         },
-        jshint: {
-            all: ['gruntfile.js', 'public/js/**/*.js', 'test/mocha/**/*.js', 'test/karma/**/*.js', 'app/**/*.js']
-        },
-        nodemon: {
-            dev: {
-                options: {
-                    file: 'server.js',
-                    args: [],
-                    ignoredFiles: ['README.md', 'node_modules/**', '.DS_Store'],
-                    watchedExtensions: ['js'],
-                    watchedFolders: ['app', 'config'],
-                    debug: true,
-                    delayTime: 1,
-                    env: {
-                        PORT: 3000
-                    },
-                    cwd: __dirname
+        sass: {
+            app: {
+                options: { // Target options
+                    sourcemap: true
+                },
+                files: { // Dictionary of files
+                    'public/css/style-app.css': 'C:/proj/windscreen/windscreen-static-content/src/main/webapp/css/style.scss' // 'destination': 'source'
+                }
+            },
+            common: {
+                options: { // Target options
+                    sourcemap: true
+                },
+                files: { // Dictionary of files
+                    'public/css/style-common.css': 'C:/proj/common-static-content/src/main/webapp/css/common/style.scss' // 'destination': 'source'
                 }
             }
         },
-        concurrent: {
-            tasks: ['nodemon', 'watch'],
-            options: {
-                logConcurrentOutput: true
+        jshint: {
+            all: {
+                src: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js', '!test/coverage/**/*.js'],
+                options: {
+                    jshintrc: true
+                }
             }
         },
-        mochaTest: {
-            options: {
-                reporter: 'spec'
+        concat: {
+            appJS: {
+                src: ['C:/proj/windscreen/windscreen-static-content/src/main/webapp/js/app/**/*.js'],
+                dest: "public/js/app-all.js"
             },
-            src: ['test/mocha/**/*.js']
-        },
-        env: {
-            test: {
-                NODE_ENV: 'test'
-            }
-        },
-        karma: {
-            unit: {
-                configFile: 'test/karma/karma.conf.js'
+            commonJS: {
+                src: ['C:/proj/common-static-content/src/main/webapp/js/vendor/angular-1.1.5/**/*.js', 'C:/proj/common-static-content/src/main/webapp/js/theaa/theaa.js'],
+                dest: 'public/js/common-all.js'
             }
         }
     });
 
-    //Load NPM tasks 
+    //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-mocha-test');
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-nodemon');
-    grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
-
-    //Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+    grunt.registerTask('default', ['build-all']);
+    grunt.registerTask('build-all', ['concat:commonJS', 'concat:appJS', 'sass:app', 'sass:common']);
+    grunt.registerTask('build-common', ['sass:common', 'concat:common']);
+    grunt.registerTask('build-app', ['sass:app', 'concat:app']);
 };
