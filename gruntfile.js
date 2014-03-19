@@ -82,7 +82,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('env');
+    //NL - had trouble with ENV so commented this out until I work out why
+    //grunt.loadNpmTasks('env');
 
     //Making grunt default to force in order not to break the project.
     grunt.option('force', true);
@@ -92,6 +93,10 @@ module.exports = function(grunt) {
     grunt.registerTask('build-all', ['concat:commonJS', 'concat:appJS', 'sass:app', 'sass:common']);
     grunt.registerTask('build-common', ['sass:common', 'concat:common']);
     grunt.registerTask('build-app', ['sass:app', 'concat:app']);
+    
     //Test task.
-    grunt.registerTask('test', ['env:test', 'karma:unit']);
+    //NL - had trouble with ENV so commented this out until I work out why
+    //grunt.registerTask('test', ['env:test', 'karma:unit']);
+    grunt.registerTask('test', ['karma:unit']);
+  
 };
