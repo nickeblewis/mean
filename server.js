@@ -5,8 +5,10 @@
  */
 
 var express = require('express');
+
+// NL - Changed this to 3000 because I can't run it via 8080 on my nitrous.io dev environment
 var config = {
-    port: 8080
+    port: 3000
 };
 
 var app = express();
