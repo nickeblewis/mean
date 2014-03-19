@@ -5,6 +5,8 @@ module.exports = function(grunt) {
     // Project Configuration
     require('time-grunt')(grunt);
 
+    var project = grunt.option("project") || 'wimbledon-parking';
+    
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         watch: {
@@ -56,11 +58,13 @@ module.exports = function(grunt) {
         },
         concat: {
             appJS: {
-                src: ['C:/proj/windscreen/windscreen-static-content/src/main/webapp/js/app/**/*.js'],
+                // The line below was public/js/**/*.js but this then meant that it was compiling itself and the previously compiled files!!
+                // TODO: So need to think of a way around this
+                src: ['public/js/app.js'],
                 dest: "public/js/app-all.js"
             },
             commonJS: {
-                src: ['C:/proj/common-static-content/src/main/webapp/js/vendor/angular-1.1.5/**/*.js', 'C:/proj/common-static-content/src/main/webapp/js/theaa/theaa.js'],
+                src: ['public/lib/angular/**/*.js'],
                 dest: 'public/js/common-all.js'
             }
         },
@@ -71,7 +75,7 @@ module.exports = function(grunt) {
         },
         karma: {
             unit: {
-                configFile: 'test/karma/karma.conf.js'
+                configFile: 'config/karma.conf.js'
             }
         }
     });

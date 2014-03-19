@@ -1,4 +1,7 @@
-angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.articles']);
+var app = angular.module("app", [])
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
+app.value('version', '0.3');
+
+app.controller("AppCtrl", function () {
+    this.message = "Hello";
+});
