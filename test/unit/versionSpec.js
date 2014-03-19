@@ -1,3 +1,4 @@
+// Test an Angular value
 describe('version', function() {
     beforeEach(module('app'));
 
@@ -6,7 +7,8 @@ describe('version', function() {
     }));
 });
 
-describe("hello world", function () {
+// Test an Angular controller
+describe("Controller testing", function () {
     var appCtrl;
     beforeEach(module("app"))
     beforeEach(inject(function ($controller) {
@@ -19,3 +21,5 @@ describe("hello world", function () {
         })
     })
 })
+
+// Test an Angular directive

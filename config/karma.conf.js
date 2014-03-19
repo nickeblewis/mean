@@ -8,7 +8,7 @@ module.exports = function(config) {
         basePath: '../',
 
         // frameworks to use
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine','ng-scenario'],
 
         // list of files / patterns to load in the browser
         files: [

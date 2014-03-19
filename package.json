@@ -46,6 +46,7 @@
     "karma-requirejs": "latest",
     "karma-coffee-preprocessor": "latest",
     "karma-phantomjs-launcher": "latest",
+    "karma-ng-scenario": "latest",
     "karma": "latest",
     "grunt-karma": "latest",
     "karma-coverage": "latest",    
