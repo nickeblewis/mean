@@ -1,6 +1,6 @@
 {
   "name": "mean",
-  "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+  "description": "MEAN - cut down version of the original mean project to facilitate builds, tests and concatenation of static files",
   "version": "0.1.2",
   "private": false,
   "author": "Nick Lewis/Steve Coleman-Williams",
