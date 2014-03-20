@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                 }
             },
             html: {
-                files: ['public/views/**', 'app/views/**'],
+                files: ['public/*', 'public/views/**', 'app/views/**'],
                 options: {
                     livereload: true
                 }
@@ -61,11 +61,11 @@ module.exports = function(grunt) {
                 // The line below was public/js/**/*.js but this then meant that it was compiling itself and the previously compiled files!!
                 // TODO: So need to think of a way around this
                 src: ['public/js/app.js'],
-                dest: "public/js/app-all.js"
+                dest: "public/js/build/app-all.js"
             },
             commonJS: {
                 src: ['public/lib/angular/**/*.js'],
-                dest: 'public/js/common-all.js'
+                dest: 'public/js/build/common-all.js'
             }
         },
         env: {

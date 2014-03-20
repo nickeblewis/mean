@@ -16,8 +16,8 @@ module.exports = function(config) {
             'public/lib/angular-mocks/angular-mocks.js',
             'public/lib/angular-cookies/angular-cookies.js',
             'public/lib/angular-resource/angular-resource.js',
-            'public/js/common-all.js',
-            'public/js/app-all.js',
+            'public/js/build/common-all.js',
+            'public/js/build/app-all.js',
             //'public/js/version.js',
             'test/unit/**/*.js'
         ],

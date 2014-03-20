@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "express": "latest",
-    "connect": "latest",
     "underscore": "latest",
     "async": "latest",
     "view-helpers": "latest",
@@ -37,7 +36,7 @@
     "grunt-nodemon": "latest",
     "grunt-concurrent": "latest",
     "grunt-mocha-test": "latest",
-    "grunt-contrib-concat": "latest",    
+    "grunt-contrib-concat": "latest", 
     "karma-script-launcher": "latest",
     "karma-chrome-launcher": "latest",
     "karma-firefox-launcher": "latest",

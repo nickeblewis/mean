@@ -1,4 +1,4 @@
-describe("Hello world", function() {
+describe("Directive testing", function() {
     var element;
     var $scope;
     beforeEach(module("app"))
